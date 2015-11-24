@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function creation_grille()
+{
+	var pseudo = document.getElementById("pseudo").value;
+	var lar = document.getElementById("lar").value;
+	var lon = document.getElementById("lon").value;
+	var couleur_j = document.getElementById("couleur_j").value;
+	var couleur_e = document.getElementById("couleur_e").value;
+
+	var div = document.getElementById("contenu");
+	
+	var table =document.createElement("table");
+		table.setAttribute("border","1");
+		table.setAttribute("width","500px");
+	for(var i=0; i<lon; i++)
+	{
+		var tr=document.createElement("tr");
+		for(var j=0; j<lar;j++)
+		{
+			var td=document.createElement("td");
+			if(i<2)
+			{
+				td.style.color=couleur_e;
+				td.innerHTML="X";
+			}
+			else if(i>lon-2)
+			{
+				td.style.color=couleur_j;
+				td.innerHTML="V";
+			}
+			else
+			{
+				td.style.color="black";
+				td.innerHTML="/";
+			}
+			tr.appendChild(td);
+		}
+		table.appendChild(tr);
+	}
+	div.innerHTML=pseudo;
+	div.appendChild(table);
+}
+</script>
+</head>
+<body>
+<div id="contenu">
+	<table border="1">
+	<tr><td colspan="2">MENU</td></tr>
+	<tr><td>Pseudo</td><td><input type="text" id="pseudo" name="pseudo"/></td></tr>
+	<tr><td>Taille grille</td><td>Largeur:<input type="number" id="lar" name="lar"/><br/>Longueur:<input type="number" id="lon" name="lon"/></td></tr>
+	<tr><td>Couleur du joueur</td><td><input type="color" id="couleur_j" name="couleur_j" value="#0010F2"/></td></tr>
+	<tr><td>Couleur de l'ennemi</td><td><input type="color" id="couleur_e" name="couleur_e" value="#F20020"/></td></tr>
+	<tr><td colspan="2"><input type="button" onclick="creation_grille()" value="Créer la grille" /></td></tr>
+	</table>
+</div>
+</body>
+</html>
